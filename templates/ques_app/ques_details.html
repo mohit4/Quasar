@@ -5,19 +5,60 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card my-2">
+            <div class="card shadow bg-white rounded my-2 p-2">
                 <div class="card-body">
                     <h2 class="card-title">{{ question.text }}</h2>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ question.author }} on {{ question.date_created }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-circle"></i> {{ question.author }} on {{ question.date_created }}</h6>
                     <p class="card-text"></p>
-                    <a href="#" class="card-link">Answer</a>
-                    <a href="#" class="card-link">Report Abuse</a>
+                    <hr>
+                    <form>
+                        <div class="form-group">
+                            <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your answer here"></textarea>
+                        </div>
+                    </form>
+                    <a href="#" class="card-link"><i class="fas fa-comment"></i> Answer</a>
+                    <a href="#" class="card-link"><i class="fas fa-exclamation-circle"></i> Report Abuse</a>
                 </div>
             </div>
         </div>
     </div>
 
-
+    {% for answer in question.answer_set.all %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <!-- <div class="col-md-2">
+                <i class="fas fa-user-circle fa-4x"></i>
+            </div>
+            <div class="col-md-8">
+                Your answer
+            </div> -->
+            <div class="card 
+            {% if answer.is_approved %}
+                border-success shadow
+            {% endif %}
+            my-2">
+                {% if answer.is_approved %}
+                    <div class="card-header bg-success" style="color:white">Approved by Asker</div>
+                {% endif %}
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2" style="text-align:center">
+                                <i class="fas fa-user-circle fa-4x"></i>
+                                <h6 class="card-title">{{ answer.author }}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-star"></i> {{ answer.votes }}</h6>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="card-text">{{ answer.text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
 </div>
 
