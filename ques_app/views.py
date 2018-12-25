@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 
 from .models import Question, Answer
 
@@ -14,3 +14,7 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['questions'] = Question.objects.all()
         return context
+
+class QuestionDetailsView(DetailView):
+    template_name = 'ques_app/ques_details.html'
+    model = Question

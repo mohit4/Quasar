@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card my-2">
+                <div class="card-body">
+                    <h2 class="card-title">{{ question.text }}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ question.author }} on {{ question.date_created }}</h6>
+                    <p class="card-text"></p>
+                    <a href="#" class="card-link">Answer</a>
+                    <a href="#" class="card-link">Report Abuse</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}
